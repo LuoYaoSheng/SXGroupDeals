@@ -21,6 +21,11 @@
 #import "SXFindDealResult.h"
 #import "SXDealCell.h"
 #import "MJExtension.h"
+#import "MJRefresh.h"
+#import "MBProgressHUD+MJ.h"
+#import "UIView+AutoLayout.h"
+#import "SXDataTool.h"
+#import "SXDetailViewController.h"
 
 @interface SXHomeViewController ()
 
@@ -48,6 +53,19 @@
 /** 记录当前的分类名 */
 @property(nonatomic,copy) NSString *currentCategoryName;
 
+/** 记录正在发送的网络请求 */
+
+@property (nonatomic, weak) DPRequest *currentRequest;
+
+/** 返回结果 */
+@property (nonatomic, strong) SXFindDealResult *result;
+
+/** 记录当前页码 */
+@property (nonatomic, assign) int currentPage;
+
+/** 没有数据时的背景图 */
+@property (nonatomic,weak) UIImageView *noDataView;
+
 @end
 
 @implementation SXHomeViewController
@@ -64,6 +82,19 @@ static NSString * const reuseIdentifier = @"deal";
     return _deals;
 }
 
+- (UIImageView *)noDataView
+{
+    if (!_noDataView) {
+        UIImageView *noDataView = [[UIImageView alloc]init];
+        noDataView.image =[UIImage imageNamed:@"icon_deals_empty"];
+        noDataView.contentMode = UIViewContentModeCenter;
+        [self.view addSubview:noDataView];
+        [noDataView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+        _noDataView = noDataView;
+    }
+    return _noDataView;
+}
+
 #pragma mark - ******************** 首次加载
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -74,9 +105,6 @@ static NSString * const reuseIdentifier = @"deal";
     [self.collectionView registerNib:[UINib nibWithNibName:@"SXDealCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier]; // $$$$$
     self.collectionView.backgroundColor = SXColor(230, 230, 230);
     
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
-    // 调用屏幕旋转
-    [self viewWillTransitionToSize:screenSize withTransitionCoordinator:nil];
     // 设置导航栏左边和右边的按钮们
     [self setLeftItems];
     [self setRightItems];
@@ -84,12 +112,17 @@ static NSString * const reuseIdentifier = @"deal";
     // 处理通知
     [self setNotes];
     
-    // 初始弄点数据好看
-    SXCity *city = [[SXCity alloc]init];
-    city.name = @"哈尔滨";
-    self.currentCity = city;
-    [self loadNewDeals];
+    // 增加刷新功能
+    [self setRefresh];
+
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // 在刚要出现时加载，便于后面的多次利用。viewDidLoad里就可以不写了；
+    [self viewWillTransitionToSize:[UIScreen mainScreen].bounds.size withTransitionCoordinator:nil];
+}
+
 
 #pragma mark - ******************** 屏幕旋转
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -129,8 +162,8 @@ static NSString * const reuseIdentifier = @"deal";
     
     SXTopBarItemView *districtTopItem = [SXTopBarItemView item];
     [districtTopItem setIcon:@"icon_district" highIcon:@"icon_district_highlighted"];
-    districtTopItem.title = @"哈尔滨";
-    districtTopItem.subtitle = @"中央大街";
+    districtTopItem.title = @"合肥 - 全部";
+    districtTopItem.subtitle = nil;
     [districtTopItem addTarget:self action:@selector(districtClick)];
     self.districtItem = [[UIBarButtonItem alloc]initWithCustomView:districtTopItem];
     
@@ -211,6 +244,7 @@ static NSString * const reuseIdentifier = @"deal";
 - (void)dealloc
 {
     [SXNoteCenter removeObserver:self];
+    [self.currentRequest disconnect];
 }
 
 /** 处理排序改变的通知 */
@@ -284,11 +318,25 @@ static NSString * const reuseIdentifier = @"deal";
     [self loadNewDeals];
 }
 
-#pragma mark - ******************** 重新发送请求
+#pragma mark - ******************** 重新发送请求(下拉刷新新数据)
+
+/** 设置上拉下啦刷新 */
+- (void)setRefresh
+{
+    [self.collectionView addHeaderWithTarget:self action:@selector(loadNewDeals)];
+    [self.collectionView addFooterWithTarget:self action:@selector(loadMoreDeals)];
+    
+    self.currentCity = [SXDataTool cityWithName:@"合肥"];
+    [self.collectionView headerBeginRefreshing];
+}
+
 - (void)loadNewDeals
 {
     // 如果当前的城市为空就不发送请求
     if (self.currentCity == nil) return;
+    
+    [self.currentRequest disconnect];
+    [self.collectionView footerEndRefreshing];
     
     // 设置参数字典
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -302,7 +350,7 @@ static NSString * const reuseIdentifier = @"deal";
     if (self.currentSort) params[@"sort"] = @(self.currentSort.value);
     
     // 发请求
-    [[DPAPI sharedInstance] request:@"v1/deal/find_deals" params:params success:^(id json) {
+    self.currentRequest = [[DPAPI sharedInstance] request:@"v1/deal/find_deals" params:params success:^(id json) {
         SXFindDealResult *result = [SXFindDealResult objectWithKeyValues:json];// $$$$$
         SXLog(@"成功");
         
@@ -312,14 +360,79 @@ static NSString * const reuseIdentifier = @"deal";
         [self.deals addObjectsFromArray:result.deals];
         // 刷新表格
         [self.collectionView reloadData];
+        
+        // 结束刷新
+        [self.collectionView headerEndRefreshing];
+        
     } failure:^(NSError *error) {
-        SXLog(@"failure失败 -%@",error);
+        [MBProgressHUD showError:@"网络繁忙，请重买个手机"];
+        
+        // 结束刷新
+        [self.collectionView headerEndRefreshing];
     }];
+}
+
+#pragma mark - ******************** 上拉刷多旧数据
+- (void)loadMoreDeals
+{
+    // 如果当前的城市为空就不发送请求
+    if (self.currentCity == nil) return;
+    
+    [self.currentRequest disconnect]; // $$$$$
+    [self.collectionView headerEndRefreshing];
+    
+    int tempPage = self.currentPage; // $$$$$
+    tempPage++;
+    
+    // 设置参数字典
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    // 城市是发请求的必要参数
+    params[@"city"] = self.currentCity.name;
+    //    params[@"limit"] = @(5);
+    
+    // 看看当前区域，分类，排序 是否有值，有值就赋值给字典
+    if (self.currentRegionName) params[@"region"] = self.currentRegionName;
+    if (self.currentCategoryName) params[@"category"] = self.currentCategoryName;
+    if (self.currentSort) params[@"sort"] = @(self.currentSort.value);
+    
+    // 页码
+    params[@"page"] = @(tempPage);
+    
+    // 发请求
+    self.currentRequest = [[DPAPI sharedInstance] request:@"v1/deal/find_deals" params:params success:^(id json) {
+        SXFindDealResult *result = [SXFindDealResult objectWithKeyValues:json];// $$$$$
+        SXLog(@"成功");
+        
+        // 添加这一次的数据
+        [self.deals addObjectsFromArray:result.deals];
+        // 刷新表格
+        [self.collectionView reloadData];
+        
+        // 结束刷新
+        [self.collectionView footerEndRefreshing];
+        
+        self.currentPage = tempPage;
+        
+    } failure:^(NSError *error) {
+        [MBProgressHUD showError:@"网络繁忙，请重买个手机"];
+        
+        // 结束刷新
+        [self.collectionView footerEndRefreshing];
+    }];
+
 }
 
 #pragma mark - ******************** collectionView的数据源方法
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.deals.count;
+    NSUInteger count = self.deals.count;
+    
+    // 当遇到加载数量和和总数相等时 隐藏
+    self.collectionView.footerHidden = (count == self.result.total_count);
+    
+    // 当背景没有值时显示出来背景图
+    self.noDataView.hidden = (count > 0);
+    
+    return count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -334,5 +447,13 @@ static NSString * const reuseIdentifier = @"deal";
     return cell;
 }
 
+#pragma mark - ******************** collectionView代理方法
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 建个详情控制器 传递模型之后弹出
+    SXDetailViewController *detailVc = [[SXDetailViewController alloc]init];
+    detailVc.deal = self.deals[indexPath.item];
+    [self presentViewController:detailVc animated:YES completion:nil];
+}
 
 @end

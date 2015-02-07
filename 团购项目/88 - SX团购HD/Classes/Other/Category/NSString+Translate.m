@@ -17,19 +17,19 @@
     NSUInteger location = [newString rangeOfString:@"."].location;
     
     // 如果是98元 就直接返回，有小数才来
-    if (location != NSNotFound) {
-        
-        NSUInteger smallNumCount = newString.length - location -1;
-        
-        if (smallNumCount > 2) {
-            // 如果是98.888888 就截取成98.88
-            newString = [newString substringToIndex:location + 3];
-            if ([newString hasSuffix:@"0"]) {
-                // 如果是89.90 就截取成89.9
-                newString = [newString substringToIndex:newString.length - 1];
-            }
-        }
-    }
+    if (location == NSNotFound) return newString;
+    
+    NSUInteger smallNumCount = newString.length - location -1;
+    
+    if (smallNumCount <= 2) return newString;
+    
+    // 如果是98.888888 就截取成98.88
+    newString = [newString substringToIndex:location + 3];
+    if (![newString hasSuffix:@"0"]) return newString;
+    
+    // 如果是89.90 就截取成89.9
+    newString = [newString substringToIndex:newString.length - 1];
+    
     return newString;
 }
 
