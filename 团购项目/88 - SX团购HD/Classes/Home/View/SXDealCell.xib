@@ -49,7 +49,7 @@
                                 <color key="textColor" red="0.7843137255" green="0.21176470589999999" blue="0.019607843140000001" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥108" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ny-h7-hzt" userLabel="原价">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥108" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ny-h7-hzt" userLabel="原价" customClass="SXCenterLineLabel">
                                 <rect key="frame" x="58" y="80" width="31" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="dr2-HO-Br3"/>
@@ -110,6 +110,7 @@
             <size key="customSize" width="305" height="305"/>
             <connections>
                 <outlet property="currentPriceLabel" destination="00I-Yg-zpw" id="QaM-n2-2hU"/>
+                <outlet property="dealNewMark" destination="j1q-al-wX8" id="1aI-uK-J8c"/>
                 <outlet property="descLabel" destination="r0S-Le-93e" id="jtG-xZ-f5v"/>
                 <outlet property="imageView" destination="VDK-KZ-Ua5" id="tvM-MQ-xw0"/>
                 <outlet property="listPriceLabel" destination="9Ny-h7-hzt" id="gNg-rB-kfP"/>

@@ -74,11 +74,9 @@ static NSString * const reuseIdentifier = @"deal";
     [self.collectionView registerNib:[UINib nibWithNibName:@"SXDealCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier]; // $$$$$
     self.collectionView.backgroundColor = SXColor(230, 230, 230);
     
-    // 设置流水布局的属性
-    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
-    layout.itemSize = CGSizeMake(305, 305);// $$$$$
-    layout.sectionInset = UIEdgeInsetsMake(10, 20, 10, 20);
-    
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    // 调用屏幕旋转
+    [self viewWillTransitionToSize:screenSize withTransitionCoordinator:nil];
     // 设置导航栏左边和右边的按钮们
     [self setLeftItems];
     [self setRightItems];
@@ -91,6 +89,28 @@ static NSString * const reuseIdentifier = @"deal";
     city.name = @"哈尔滨";
     self.currentCity = city;
     [self loadNewDeals];
+}
+
+#pragma mark - ******************** 屏幕旋转
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
+    CGFloat screenW = size.width;
+    // 根据屏幕尺寸决定每行的列数
+    int cols = (screenW == SXScreenMaxWH) ? 3 : 2;
+    // 一行之中所有cell的总宽度
+    CGFloat allCellW = cols * layout.itemSize.width;
+    // cell之间间距
+    CGFloat xMargin = (screenW - allCellW)/ (cols + 1);
+    CGFloat yMargin = (cols == 3) ? xMargin : 30;
+    // 周边的间距
+    layout.sectionInset = UIEdgeInsetsMake(yMargin, xMargin, yMargin, xMargin);
+    // 每一行中每个cell之间的间距
+    layout.minimumInteritemSpacing = xMargin;
+    // 每一行之间的间距
+    layout.minimumLineSpacing = yMargin;
+    
 }
 
 #pragma mark - ******************** 设置顶部按钮

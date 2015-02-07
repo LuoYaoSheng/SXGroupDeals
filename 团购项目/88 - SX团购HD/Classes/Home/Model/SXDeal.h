@@ -17,10 +17,26 @@
 /** 团购描述 */
 @property (copy, nonatomic) NSString *desc;
 /** 团购包含商品原价值 */
-@property (assign, nonatomic) double list_price;
+@property (copy, nonatomic) NSString *list_price;
 /** 团购价格 */
-@property (assign, nonatomic) double current_price;
+@property (copy, nonatomic) NSString *current_price;
 /** 团购当前已购买数 */
 @property (assign, nonatomic) int purchase_count;
+
+
+/** 团购图片链接，最大图片尺寸450×280 */
+@property (copy, nonatomic) NSString *image_url;
+/** 小尺寸团购图片链接，最大图片尺寸160×100 */
+@property (copy, nonatomic) NSString *s_image_url;
+
+/** 团购发布上线日期 */
+@property (copy, nonatomic) NSString *publish_date;
+/** 团购单的截止购买日期 */
+@property (copy, nonatomic) NSString *purchase_deadline;
+
+/** 团购Web页面链接，适用于网页应用 */
+@property (copy, nonatomic) NSString *deal_url;
+/** 团购HTML5页面链接，适用于移动应用和联网车载应用 */
+@property (copy, nonatomic) NSString *deal_h5_url;
 
 @end

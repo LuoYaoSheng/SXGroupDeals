@@ -20,3 +20,8 @@ NSString *const SXDistrictDidChangeNotification = @"SXDistrictDidChangeNotificat
 NSString *const SXCurrentDistrictKey = @"SXCurrentDistrictKey";
 /** 通过这个key可以取出当前子区域的索引 */
 NSString *const SXCurrentSubdistrictIndexKey = @"SXCurrentSubdistrictIndexKey";
+
+
+// 数值
+CGFloat const SXScreenMaxWH = 1024;
+CGFloat const SXScreenMinWH = 768;

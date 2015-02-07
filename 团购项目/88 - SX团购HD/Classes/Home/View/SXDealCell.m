@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *listPriceLabel;
 /** 购买数量 */
 @property (weak, nonatomic) IBOutlet UILabel *purchaseCountLabel;
+/** 新单图标 */
+@property (weak, nonatomic) IBOutlet UIImageView *dealNewMark;
 
 @end
 @implementation SXDealCell
@@ -41,10 +43,26 @@
     _deal = deal;
     self.titleLabel.text = deal.title;
     self.descLabel.text = deal.desc;
-    self.currentPriceLabel.text = [NSString stringWithFormat:@"%.2f元",deal.current_price];
-    self.listPriceLabel.text = [NSString stringWithFormat:@"%.2f元",deal.list_price];
-    self.purchaseCountLabel.text = [NSString stringWithFormat:@"%d人已疯抢",deal.purchase_count];
     
+    // 原价
+    self.listPriceLabel.text = [NSString stringWithFormat:@"￥%@", deal.list_price];
+    // 现价
+    self.currentPriceLabel.text = [NSString stringWithFormat:@"￥%@", deal.current_price];
+    // 购买数
+    
+    self.purchaseCountLabel.text = [NSString stringWithFormat:@"%d人已疯抢",deal.purchase_count];
+    // 加载图片
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:deal.image_url] placeholderImage:[UIImage imageNamed:@"placeholder_deal"]];
+    
+    NSDateFormatter *fmt = [[NSDateFormatter alloc]init];
+    fmt.dateFormat = @"yyyy-MM-dd";
+    NSString *dateNow = [fmt stringFromDate:[NSDate date]];
+    
+    // 字符串比较大小
+    NSComparisonResult result = [dateNow compare:deal.publish_date];
+    
+    // 结果如果是降序，就说明前面的比后面的大，就是出版时间小于现在的时间就是 旧的，标志就隐藏
+    self.dealNewMark.hidden = (result == NSOrderedDescending);
     
 }
 

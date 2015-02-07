@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D35A56F1A862BFB002AF6AF /* NSString+Translate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D35A56E1A862BFB002AF6AF /* NSString+Translate.m */; };
+		1D35A5721A8633C0002AF6AF /* SXCenterLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D35A5711A8633C0002AF6AF /* SXCenterLineLabel.m */; };
 		1D4AC1341A83360A0027535C /* SXCityGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AC1331A83360A0027535C /* SXCityGroup.m */; };
 		1D4AC1371A8336180027535C /* SXCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AC1361A8336180027535C /* SXCity.m */; };
 		1D4FA1C51A83AB8C00627C2E /* SXDistrict.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4FA1C41A83AB8C00627C2E /* SXDistrict.m */; };
@@ -85,6 +87,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D35A56D1A862BFB002AF6AF /* NSString+Translate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Translate.h"; sourceTree = "<group>"; };
+		1D35A56E1A862BFB002AF6AF /* NSString+Translate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Translate.m"; sourceTree = "<group>"; };
+		1D35A5701A8633C0002AF6AF /* SXCenterLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXCenterLineLabel.h; sourceTree = "<group>"; };
+		1D35A5711A8633C0002AF6AF /* SXCenterLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXCenterLineLabel.m; sourceTree = "<group>"; };
 		1D4AC1321A83360A0027535C /* SXCityGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXCityGroup.h; sourceTree = "<group>"; };
 		1D4AC1331A83360A0027535C /* SXCityGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXCityGroup.m; sourceTree = "<group>"; };
 		1D4AC1351A8336180027535C /* SXCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXCity.h; sourceTree = "<group>"; };
@@ -399,6 +405,8 @@
 				1D4FA1CC1A83C60900627C2E /* SXDealCell.h */,
 				1D4FA1CD1A83C60900627C2E /* SXDealCell.m */,
 				1D4FA1CE1A83C60900627C2E /* SXDealCell.xib */,
+				1D35A5701A8633C0002AF6AF /* SXCenterLineLabel.h */,
+				1D35A5711A8633C0002AF6AF /* SXCenterLineLabel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -458,6 +466,8 @@
 				1DAA47911A81E757009B1581 /* UIView+Frame.m */,
 				1DAA47961A81EBC6009B1581 /* UIBarButtonItem+Extension.h */,
 				1DAA47971A81EBC6009B1581 /* UIBarButtonItem+Extension.m */,
+				1D35A56D1A862BFB002AF6AF /* NSString+Translate.h */,
+				1D35A56E1A862BFB002AF6AF /* NSString+Translate.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -673,8 +683,10 @@
 				1D6BE3701A845CAF00BF1AB7 /* SDWebImageManager.m in Sources */,
 				1D69DF0B1A823BB00074B2DC /* SXSort.m in Sources */,
 				1DAA47921A81E757009B1581 /* UIView+Frame.m in Sources */,
+				1D35A5721A8633C0002AF6AF /* SXCenterLineLabel.m in Sources */,
 				1DAA478C1A81D9AD009B1581 /* SXHomeViewController.m in Sources */,
 				1D5D6ECA1A832AC70057ED98 /* SXDistrictViewController.m in Sources */,
+				1D35A56F1A862BFB002AF6AF /* NSString+Translate.m in Sources */,
 				1D4FA1CF1A83C60900627C2E /* SXDealCell.m in Sources */,
 				1D5D6ECF1A832F7A0057ED98 /* SXCityViewController.m in Sources */,
 				1D6BE3691A845CAF00BF1AB7 /* MKAnnotationView+WebCache.m in Sources */,

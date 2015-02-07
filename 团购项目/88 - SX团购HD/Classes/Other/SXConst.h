@@ -19,3 +19,8 @@ UIKIT_EXTERN NSString *const SXDistrictDidChangeNotification;
 UIKIT_EXTERN NSString *const SXCurrentDistrictKey;
 /** 通过这个key可以取出当前子区域的索引 */
 UIKIT_EXTERN NSString *const SXCurrentSubdistrictIndexKey;
+
+// 数值
+UIKIT_EXTERN CGFloat const SXScreenMaxWH;
+UIKIT_EXTERN CGFloat const SXScreenMinWH;
+
