@@ -8,6 +8,7 @@
 
 #import "SXDeal.h"
 #import "NSString+Translate.h"
+#import "MJExtension.h"
 
 @implementation SXDeal
 
@@ -27,5 +28,14 @@
 {
     _current_price = current_price.dealedPriceString;
 }
+
+- (BOOL)isEqual:(SXDeal *)other
+{
+    return [self.deal_id isEqualToString:other.deal_id];
+}
+
+
+/** 归档一句完事 */
+MJCodingImplementation
 
 @end

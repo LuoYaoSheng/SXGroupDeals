@@ -16,6 +16,7 @@
                 <outlet property="leftView" destination="2VQ-9d-Ql5" id="PIK-ht-w3s"/>
                 <outlet property="listPriceLabel" destination="trN-mu-0RT" id="Ykc-Ho-PXA"/>
                 <outlet property="soldNumberButton" destination="XtY-lQ-Nna" id="U0F-zc-FYe"/>
+                <outlet property="starBtn" destination="0kv-0A-VQn" id="QkF-eJ-B85"/>
                 <outlet property="titleLabel" destination="8d9-l5-L0i" id="5SH-3g-SNu"/>
                 <outlet property="view" destination="mEw-pa-VxH" id="Nlv-Cn-czh"/>
                 <outlet property="webView" destination="QCt-ru-SvV" id="Uyn-UW-a09"/>
@@ -142,6 +143,9 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <state key="selected" image="icon_collect_highlighted"/>
+                                    <connections>
+                                        <action selector="collect:" destination="-1" eventType="touchUpInside" id="j31-Z1-2jM"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ww3-oh-5Uj" userLabel="分享按钮">
                                     <rect key="frame" x="340" y="373" width="60" height="60"/>

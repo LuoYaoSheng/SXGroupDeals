@@ -14,6 +14,7 @@
 #import "MBProgressHUD+MJ.h"
 #import "SXFindDealResult.h"
 #import "MJExtension.h"
+#import "SXDealTool.h"
 
 @interface SXDetailViewController ()<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -29,10 +30,20 @@
 @property (weak, nonatomic) IBOutlet UIButton *soldNumberButton;
 @property (weak, nonatomic) IBOutlet UIButton *anyTimeRefuntableButton;
 @property (weak, nonatomic) IBOutlet UIButton *expiresRefuntableButton;
+@property (weak, nonatomic) IBOutlet UIButton *starBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutWidth;
 @end
 
 @implementation SXDetailViewController
+- (IBAction)collect:(UIButton *)btn {
+    if ([btn isSelected]) {
+        [SXDealTool uncollect:self.deal];
+    }else{
+        [SXDealTool collect:self.deal];
+    }
+    
+    btn.selected = !btn.isSelected;
+}
 
 #pragma mark - ******************** 懒加载
 - (UIActivityIndicatorView *)loadingView
@@ -60,6 +71,12 @@
     
 }
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self viewWillTransitionToSize:[UIScreen mainScreen].bounds.size withTransitionCoordinator:nil];
+}
+
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     if (size.width < SXScreenMaxWH){
@@ -71,6 +88,8 @@
 
 - (void)setLeftView
 {
+    // 星星是否有
+    self.starBtn.selected = [SXDealTool isCollected:self.deal];
     // 图片
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.deal.image_url] placeholderImage:[UIImage imageNamed:@"placeholder_deal"]];
     // 标题

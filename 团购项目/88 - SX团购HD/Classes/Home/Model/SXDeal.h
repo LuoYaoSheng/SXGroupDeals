@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SXDeal : NSObject
+@interface SXDeal : NSObject<NSCoding>
 
 /** 团购单ID */
 @property (copy, nonatomic) NSString *deal_id;

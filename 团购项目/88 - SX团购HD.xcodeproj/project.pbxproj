@@ -29,6 +29,10 @@
 		1D35A5AD1A8635A0002AF6AF /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D35A5A31A8635A0002AF6AF /* UIScrollView+MJExtension.m */; };
 		1D35A5AE1A8635A0002AF6AF /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D35A5A51A8635A0002AF6AF /* UIScrollView+MJRefresh.m */; };
 		1D35A5AF1A8635A0002AF6AF /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D35A5A71A8635A0002AF6AF /* UIView+MJExtension.m */; };
+		1D4687F41A877BB800580000 /* SXDealTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4687F31A877BB800580000 /* SXDealTool.m */; };
+		1D4687FA1A87844C00580000 /* AwesomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4687F71A87844C00580000 /* AwesomeMenu.m */; };
+		1D4687FB1A87844C00580000 /* AwesomeMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4687F91A87844C00580000 /* AwesomeMenuItem.m */; };
+		1D4687FE1A8786E700580000 /* SXCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4687FD1A8786E700580000 /* SXCollectionViewController.m */; };
 		1D4AC1341A83360A0027535C /* SXCityGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AC1331A83360A0027535C /* SXCityGroup.m */; };
 		1D4AC1371A8336180027535C /* SXCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AC1361A8336180027535C /* SXCity.m */; };
 		1D4FA1C51A83AB8C00627C2E /* SXDistrict.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4FA1C41A83AB8C00627C2E /* SXDistrict.m */; };
@@ -144,6 +148,14 @@
 		1D35A5A51A8635A0002AF6AF /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		1D35A5A61A8635A0002AF6AF /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		1D35A5A71A8635A0002AF6AF /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		1D4687F21A877BB800580000 /* SXDealTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXDealTool.h; sourceTree = "<group>"; };
+		1D4687F31A877BB800580000 /* SXDealTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXDealTool.m; sourceTree = "<group>"; };
+		1D4687F61A87844C00580000 /* AwesomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeMenu.h; sourceTree = "<group>"; };
+		1D4687F71A87844C00580000 /* AwesomeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwesomeMenu.m; sourceTree = "<group>"; };
+		1D4687F81A87844C00580000 /* AwesomeMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeMenuItem.h; sourceTree = "<group>"; };
+		1D4687F91A87844C00580000 /* AwesomeMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwesomeMenuItem.m; sourceTree = "<group>"; };
+		1D4687FC1A8786E700580000 /* SXCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXCollectionViewController.h; sourceTree = "<group>"; };
+		1D4687FD1A8786E700580000 /* SXCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXCollectionViewController.m; sourceTree = "<group>"; };
 		1D4AC1321A83360A0027535C /* SXCityGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXCityGroup.h; sourceTree = "<group>"; };
 		1D4AC1331A83360A0027535C /* SXCityGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXCityGroup.m; sourceTree = "<group>"; };
 		1D4AC1351A8336180027535C /* SXCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXCity.h; sourceTree = "<group>"; };
@@ -332,6 +344,17 @@
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
+		1D4687F51A87844C00580000 /* AwesomeMenu */ = {
+			isa = PBXGroup;
+			children = (
+				1D4687F61A87844C00580000 /* AwesomeMenu.h */,
+				1D4687F71A87844C00580000 /* AwesomeMenu.m */,
+				1D4687F81A87844C00580000 /* AwesomeMenuItem.h */,
+				1D4687F91A87844C00580000 /* AwesomeMenuItem.m */,
+			);
+			path = AwesomeMenu;
+			sourceTree = "<group>";
+		};
 		1D59E2621A80616A006265BC = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +440,10 @@
 				1D5A353F1A865D5700575413 /* SXDetailViewController.h */,
 				1D5A35401A865D5700575413 /* SXDetailViewController.m */,
 				1D5A35411A865D5700575413 /* SXDetailViewController.xib */,
+				1D4687F21A877BB800580000 /* SXDealTool.h */,
+				1D4687F31A877BB800580000 /* SXDealTool.m */,
+				1D4687FC1A8786E700580000 /* SXCollectionViewController.h */,
+				1D4687FD1A8786E700580000 /* SXCollectionViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -578,6 +605,7 @@
 		1D59E2AB1A806FE2006265BC /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				1D4687F51A87844C00580000 /* AwesomeMenu */,
 				1D35A5971A8635A0002AF6AF /* MJRefresh */,
 				1D35A58F1A863590002AF6AF /* MBProgressHUD */,
 				1D35A5781A863584002AF6AF /* MJExtension */,
@@ -787,10 +815,12 @@
 				1D59E2BA1A8076E9006265BC /* DPConstants.m in Sources */,
 				1D82099D1A826ABE002D28C5 /* SXConst.m in Sources */,
 				1D35A58C1A863584002AF6AF /* NSObject+MJCoding.m in Sources */,
+				1D4687FB1A87844C00580000 /* AwesomeMenuItem.m in Sources */,
 				1D99A69C1A83941700F41E5D /* UIView+AutoLayout.m in Sources */,
 				1D6BE3741A845CAF00BF1AB7 /* UIImage+MultiFormat.m in Sources */,
 				1D35A5A91A8635A0002AF6AF /* MJRefreshBaseView.m in Sources */,
 				1D35A5AA1A8635A0002AF6AF /* MJRefreshConst.m in Sources */,
+				1D4687FE1A8786E700580000 /* SXCollectionViewController.m in Sources */,
 				1D6BE3761A845CAF00BF1AB7 /* UIImageView+HighlightedWebCache.m in Sources */,
 				1D69DF371A8242940074B2DC /* SXDropdownLeftCell.m in Sources */,
 				1D4AC1341A83360A0027535C /* SXCityGroup.m in Sources */,
@@ -815,6 +845,7 @@
 				1DAA47951A81E854009B1581 /* SXNavController.m in Sources */,
 				1D99A6901A83863D00F41E5D /* SXCityResultViewController.m in Sources */,
 				1D6BE3771A845CAF00BF1AB7 /* UIImageView+WebCache.m in Sources */,
+				1D4687FA1A87844C00580000 /* AwesomeMenu.m in Sources */,
 				1D35A5961A863590002AF6AF /* README.mdown in Sources */,
 				1D69DF301A823FC80074B2DC /* SXCategoryViewController.m in Sources */,
 				1D6BE3781A845CAF00BF1AB7 /* UIView+WebCacheOperation.m in Sources */,
@@ -824,6 +855,7 @@
 				1D6BE36A1A845CAF00BF1AB7 /* NSData+ImageContentType.m in Sources */,
 				1D35A58E1A863584002AF6AF /* NSObject+MJKeyValue.m in Sources */,
 				1DAA479B1A81F021009B1581 /* SXTopBarItemView.m in Sources */,
+				1D4687F41A877BB800580000 /* SXDealTool.m in Sources */,
 				1D69DF3A1A8242AF0074B2DC /* SXDropdownRightCell.m in Sources */,
 				1D59E2A81A8062A8006265BC /* AppDelegate.m in Sources */,
 				1D6BE3721A845CAF00BF1AB7 /* UIButton+WebCache.m in Sources */,

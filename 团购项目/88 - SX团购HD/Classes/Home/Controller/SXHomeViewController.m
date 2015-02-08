@@ -26,8 +26,11 @@
 #import "UIView+AutoLayout.h"
 #import "SXDataTool.h"
 #import "SXDetailViewController.h"
+#import "AwesomeMenu.h"
+#import "SXCollectionViewController.h"
+#import "SXNavController.h"
 
-@interface SXHomeViewController ()
+@interface SXHomeViewController ()<AwesomeMenuDelegate>
 
 /** 顶部分类选择按钮 */
 @property(nonatomic,strong) UIBarButtonItem *categoryItem;
@@ -114,6 +117,8 @@ static NSString * const reuseIdentifier = @"deal";
     
     // 增加刷新功能
     [self setRefresh];
+    
+    [self setupAwesomeMenu];
 
 }
 - (void)viewWillAppear:(BOOL)animated
@@ -121,6 +126,94 @@ static NSString * const reuseIdentifier = @"deal";
     [super viewWillAppear:animated];
     // 在刚要出现时加载，便于后面的多次利用。viewDidLoad里就可以不写了；
     [self viewWillTransitionToSize:[UIScreen mainScreen].bounds.size withTransitionCoordinator:nil];
+}
+
+#pragma mark - ******************** 环形菜单
+- (void)setupAwesomeMenu
+{
+    // 所有item的公共背景
+    UIImage *itemBg = [UIImage imageNamed:@"bg_pathMenu_black_normal"];
+    
+    // 创建菜单item（按钮）
+    // 1.个人信息
+    AwesomeMenuItem *personalItem = [[AwesomeMenuItem alloc] initWithImage:itemBg highlightedImage:nil ContentImage:[UIImage imageNamed:@"icon_pathMenu_mine_normal"] highlightedContentImage:[UIImage imageNamed:@"icon_pathMenu_mine_highlighted"]];
+    
+    // 2.收藏
+    AwesomeMenuItem *collectItem = [[AwesomeMenuItem alloc] initWithImage:itemBg highlightedImage:nil ContentImage:[UIImage imageNamed:@"icon_pathMenu_collect_normal"] highlightedContentImage:[UIImage imageNamed:@"icon_pathMenu_collect_highlighted"]];
+    
+    // 3.历史记录
+    AwesomeMenuItem *historyItem = [[AwesomeMenuItem alloc] initWithImage:itemBg highlightedImage:nil ContentImage:[UIImage imageNamed:@"icon_pathMenu_scan_normal"] highlightedContentImage:[UIImage imageNamed:@"icon_pathMenu_scan_highlighted"]];
+    
+    // 4.更多
+    AwesomeMenuItem *moreItem = [[AwesomeMenuItem alloc] initWithImage:itemBg highlightedImage:nil ContentImage:[UIImage imageNamed:@"icon_pathMenu_more_normal"] highlightedContentImage:[UIImage imageNamed:@"icon_pathMenu_more_highlighted"]];
+    
+    // 5.开始
+    AwesomeMenuItem *startItem = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:@"icon_pathMenu_background_normal"] highlightedImage:[UIImage imageNamed:@"icon_pathMenu_background_highlighted"] ContentImage:[UIImage imageNamed:@"icon_pathMenu_mainMine_normal"] highlightedContentImage:[UIImage imageNamed:@"icon_pathMenu_mainMine_highlighted"]];
+    
+    // 创建菜单
+    NSArray *items = @[personalItem, collectItem, historyItem, moreItem];
+    AwesomeMenu *menu = [[AwesomeMenu alloc] initWithFrame:CGRectZero startItem:startItem optionMenus:items];
+    menu.delegate = self;
+    menu.alpha = 0.5;
+    [self.view addSubview:menu];
+    
+    // 设置菜单约束
+    [menu autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
+    [menu autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0];
+    CGFloat menuWH = 250;
+    [menu autoSetDimensionsToSize:CGSizeMake(menuWH, menuWH)];
+    
+    // 设置菜单信息
+    CGFloat margin = 50;
+    menu.menuWholeAngle = M_PI_2;
+    menu.startPoint = CGPointMake(margin, menuWH - margin);
+    menu.rotateAddButton = NO;
+}
+
+#pragma mark - ******************** AwesomeMenu
+#pragma mark - <AwesomeMenuDelegate>
+- (void)awesomeMenu:(AwesomeMenu *)menu didSelectIndex:(NSInteger)idx
+{
+    switch (idx) {
+        case 0: // 个人
+            break;
+        case 1: { // 收藏
+             SXCollectionViewController *collectVc = [[SXCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+        SXNavController *nav = [[SXNavController alloc] initWithRootViewController:collectVc];
+            [self presentViewController:nav animated:YES completion:nil];
+            break;
+        }
+        case 2: // 历史
+            break;
+        case 3: // 更多
+            break;
+    }
+    
+    [self awesomeMenuWillAnimateClose:menu];
+}
+
+- (void)awesomeMenuWillAnimateOpen:(AwesomeMenu *)menu
+{
+    menu.contentImage = [UIImage imageNamed:@"icon_pathMenu_cross_normal"];
+    menu.highlightedContentImage = [UIImage imageNamed:@"icon_pathMenu_cross_highlighted"];
+    menu.alpha = 1.0;
+}
+
+- (void)awesomeMenuDidFinishAnimationOpen:(AwesomeMenu *)menu
+{
+    
+}
+
+- (void)awesomeMenuWillAnimateClose:(AwesomeMenu *)menu
+{
+    menu.contentImage = [UIImage imageNamed:@"icon_pathMenu_mainMine_normal"];
+    menu.highlightedContentImage = [UIImage imageNamed:@"icon_pathMenu_mainMine_highlighted"];
+    menu.alpha = 0.5;
+}
+
+- (void)awesomeMenuDidFinishAnimationClose:(AwesomeMenu *)menu
+{
+    
 }
 
 
