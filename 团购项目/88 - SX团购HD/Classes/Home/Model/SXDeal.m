@@ -14,7 +14,8 @@
 // 因为出现了关键字重复，把模型里的desc指定成plist里的description
 + (NSDictionary *)replacedKeyFromPropertyName   // $$$$$
 {
-    return @{@"desc" : @"description"};
+    return @{@"desc" : @"description",
+              @"is_refundable" : @"restrictions.is_refundable"};
 }
 
 - (void)setList_price:(NSString *)list_price

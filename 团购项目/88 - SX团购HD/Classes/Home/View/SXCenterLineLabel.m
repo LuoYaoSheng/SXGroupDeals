@@ -16,8 +16,8 @@
     [super drawRect:rect];
     
     // 画矩形
-    CGFloat x = 0;
-    CGFloat y = rect.size.height * 0.5;
+    CGFloat x = 0 + rect.origin.x;
+    CGFloat y = rect.size.height * 0.4 + rect.origin.y;
     CGFloat w = rect.size.width;
     CGFloat h = 1;
     UIRectFill(CGRectMake(x, y, w, h));

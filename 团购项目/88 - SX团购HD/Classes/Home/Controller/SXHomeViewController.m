@@ -162,7 +162,7 @@ static NSString * const reuseIdentifier = @"deal";
     
     SXTopBarItemView *districtTopItem = [SXTopBarItemView item];
     [districtTopItem setIcon:@"icon_district" highIcon:@"icon_district_highlighted"];
-    districtTopItem.title = @"合肥 - 全部";
+    districtTopItem.title = @"北京 - 全部";
     districtTopItem.subtitle = nil;
     [districtTopItem addTarget:self action:@selector(districtClick)];
     self.districtItem = [[UIBarButtonItem alloc]initWithCustomView:districtTopItem];
@@ -326,7 +326,7 @@ static NSString * const reuseIdentifier = @"deal";
     [self.collectionView addHeaderWithTarget:self action:@selector(loadNewDeals)];
     [self.collectionView addFooterWithTarget:self action:@selector(loadMoreDeals)];
     
-    self.currentCity = [SXDataTool cityWithName:@"合肥"];
+    self.currentCity = [SXDataTool cityWithName:@"北京"];
     [self.collectionView headerBeginRefreshing];
 }
 

@@ -39,4 +39,7 @@
 /** 团购HTML5页面链接，适用于移动应用和联网车载应用 */
 @property (copy, nonatomic) NSString *deal_h5_url;
 
+/** 是否支持随时退款，0：不是，1：是 */
+@property (nonatomic, assign) BOOL is_refundable;
+
 @end
