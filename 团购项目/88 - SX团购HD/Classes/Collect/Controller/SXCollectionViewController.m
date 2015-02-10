@@ -252,6 +252,7 @@ static NSString * const reuseIdentifier = @"deal";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSUInteger count = self.deals.count;
     self.noDataView.hidden = (count > 0);
+    
     return count;
 }
 

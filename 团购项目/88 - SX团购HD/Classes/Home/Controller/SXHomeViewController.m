@@ -29,6 +29,7 @@
 #import "AwesomeMenu.h"
 #import "SXCollectionViewController.h"
 #import "SXHistoryViewController.h"
+#import "SXSearchViewController.h"
 #import "SXNavController.h"
 
 @interface SXHomeViewController ()<AwesomeMenuDelegate>
@@ -120,6 +121,8 @@ static NSString * const reuseIdentifier = @"deal";
     [self setRefresh];
     
     [self setupAwesomeMenu];
+    
+        self.collectionView.footerHidden = YES;
 
 }
 - (void)viewWillAppear:(BOOL)animated
@@ -282,7 +285,7 @@ static NSString * const reuseIdentifier = @"deal";
     searchItem.customView.width = 50;
     UIBarButtonItem *mapItem = [UIBarButtonItem itemWithImage:@"icon_map" HightLightImage:@"icon_map_highlighted" target:self action:@selector(mapClick)];
     mapItem.customView.width = 50;
-    self.navigationItem.rightBarButtonItems = @[searchItem,mapItem];
+    self.navigationItem.rightBarButtonItems = @[mapItem,searchItem];
 }
 
 #pragma mark - ******************** 顶部按钮的点击事件
@@ -290,7 +293,15 @@ static NSString * const reuseIdentifier = @"deal";
 /** 搜索按钮点击 */
 - (void)searchClick
 {
-    SXLog(@"searchItem--");
+    if (self.currentCity == nil) {
+        [MBProgressHUD showError:@"请选择城市后再搜索"];
+        return;
+    }
+    
+    SXSearchViewController *searchVc = [[SXSearchViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+    searchVc.cityName = self.currentCity.name;
+    SXNavController *nav = [[SXNavController alloc] initWithRootViewController:searchVc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 /** 地图按钮点击 */
@@ -390,6 +401,7 @@ static NSString * const reuseIdentifier = @"deal";
     self.currentCity = no.userInfo[SXCurrentCityKey];
     top.title = [NSString stringWithFormat:@"%@ - 全部", self.currentCity.name];
     top.subtitle = nil;
+    self.currentRegionName = nil;
     
     [self loadNewDeals];
 }
@@ -426,6 +438,8 @@ static NSString * const reuseIdentifier = @"deal";
     
     self.currentCity = [SXDataTool cityWithName:@"北京"];
     [self.collectionView headerBeginRefreshing];
+    
+
 }
 
 - (void)loadNewDeals
@@ -449,18 +463,20 @@ static NSString * const reuseIdentifier = @"deal";
     
     // 发请求
     self.currentRequest = [[DPAPI sharedInstance] request:@"v1/deal/find_deals" params:params success:^(id json) {
-        SXFindDealResult *result = [SXFindDealResult objectWithKeyValues:json];// $$$$$
+        self.result = [SXFindDealResult objectWithKeyValues:json];// $$$$$
         SXLog(@"成功");
         
         // 清空上一次的数据
         [self.deals removeAllObjects];
         // 添加这一次的数据
-        [self.deals addObjectsFromArray:result.deals];
+        [self.deals addObjectsFromArray:self.result.deals];
         // 刷新表格
         [self.collectionView reloadData];
         
         // 结束刷新
         [self.collectionView headerEndRefreshing];
+        
+        [self.collectionView setContentOffset:CGPointMake(0, -64) animated:YES];
         
     } failure:^(NSError *error) {
         [MBProgressHUD showError:@"网络繁忙，请重买个手机"];
@@ -498,11 +514,11 @@ static NSString * const reuseIdentifier = @"deal";
     
     // 发请求
     self.currentRequest = [[DPAPI sharedInstance] request:@"v1/deal/find_deals" params:params success:^(id json) {
-        SXFindDealResult *result = [SXFindDealResult objectWithKeyValues:json];// $$$$$
+        self.result = [SXFindDealResult objectWithKeyValues:json];// $$$$$
         SXLog(@"成功");
         
         // 添加这一次的数据
-        [self.deals addObjectsFromArray:result.deals];
+        [self.deals addObjectsFromArray:self.result.deals];
         // 刷新表格
         [self.collectionView reloadData];
         
@@ -524,8 +540,11 @@ static NSString * const reuseIdentifier = @"deal";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSUInteger count = self.deals.count;
     
+    
     // 当遇到加载数量和和总数相等时 隐藏
     self.collectionView.footerHidden = (count == self.result.total_count);
+    
+    NSLog(@"%zd,%zd",self.deals.count,self.result.total_count);
     
     // 当背景没有值时显示出来背景图
     self.noDataView.hidden = (count > 0);

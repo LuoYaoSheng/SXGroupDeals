@@ -30,6 +30,7 @@
 		1D35A5AE1A8635A0002AF6AF /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D35A5A51A8635A0002AF6AF /* UIScrollView+MJRefresh.m */; };
 		1D35A5AF1A8635A0002AF6AF /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D35A5A71A8635A0002AF6AF /* UIView+MJExtension.m */; };
 		1D3D1BCE1A8A069D00119E3A /* SXHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3D1BCD1A8A069D00119E3A /* SXHistoryViewController.m */; };
+		1D3D1BD21A8A274100119E3A /* SXSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3D1BD11A8A274100119E3A /* SXSearchViewController.m */; };
 		1D4687F41A877BB800580000 /* SXDealTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4687F31A877BB800580000 /* SXDealTool.m */; };
 		1D4687FA1A87844C00580000 /* AwesomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4687F71A87844C00580000 /* AwesomeMenu.m */; };
 		1D4687FB1A87844C00580000 /* AwesomeMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4687F91A87844C00580000 /* AwesomeMenuItem.m */; };
@@ -151,6 +152,8 @@
 		1D35A5A71A8635A0002AF6AF /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		1D3D1BCC1A8A069D00119E3A /* SXHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXHistoryViewController.h; sourceTree = "<group>"; };
 		1D3D1BCD1A8A069D00119E3A /* SXHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXHistoryViewController.m; sourceTree = "<group>"; };
+		1D3D1BD01A8A274100119E3A /* SXSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXSearchViewController.h; sourceTree = "<group>"; };
+		1D3D1BD11A8A274100119E3A /* SXSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXSearchViewController.m; sourceTree = "<group>"; };
 		1D4687F21A877BB800580000 /* SXDealTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXDealTool.h; sourceTree = "<group>"; };
 		1D4687F31A877BB800580000 /* SXDealTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXDealTool.m; sourceTree = "<group>"; };
 		1D4687F61A87844C00580000 /* AwesomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeMenu.h; sourceTree = "<group>"; };
@@ -356,6 +359,15 @@
 			path = History;
 			sourceTree = "<group>";
 		};
+		1D3D1BCF1A8A272800119E3A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				1D3D1BD01A8A274100119E3A /* SXSearchViewController.h */,
+				1D3D1BD11A8A274100119E3A /* SXSearchViewController.m */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		1D4687F51A87844C00580000 /* AwesomeMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,6 +440,7 @@
 		1D59E2941A8062A8006265BC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1D3D1BCF1A8A272800119E3A /* Search */,
 				1D3D1BCB1A8A067200119E3A /* History */,
 				1D59E2951A8062A8006265BC /* Collect */,
 				1D59E2991A8062A8006265BC /* Home */,
@@ -829,6 +842,7 @@
 				1D82099D1A826ABE002D28C5 /* SXConst.m in Sources */,
 				1D35A58C1A863584002AF6AF /* NSObject+MJCoding.m in Sources */,
 				1D4687FB1A87844C00580000 /* AwesomeMenuItem.m in Sources */,
+				1D3D1BD21A8A274100119E3A /* SXSearchViewController.m in Sources */,
 				1D99A69C1A83941700F41E5D /* UIView+AutoLayout.m in Sources */,
 				1D6BE3741A845CAF00BF1AB7 /* UIImage+MultiFormat.m in Sources */,
 				1D35A5A91A8635A0002AF6AF /* MJRefreshBaseView.m in Sources */,
