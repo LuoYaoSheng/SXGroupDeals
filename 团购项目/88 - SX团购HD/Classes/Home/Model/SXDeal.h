@@ -42,4 +42,8 @@
 /** 是否支持随时退款，0：不是，1：是 */
 @property (nonatomic, assign) BOOL is_refundable;
 
+/** 控制cell的状态 */
+@property (nonatomic, assign, getter=isEditing) BOOL editing;
+@property (nonatomic, assign, getter=isChecked) BOOL checked;
+
 @end

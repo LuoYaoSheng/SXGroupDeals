@@ -25,9 +25,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *purchaseCountLabel;
 /** 新单图标 */
 @property (weak, nonatomic) IBOutlet UIImageView *dealNewMark;
+@property (weak, nonatomic) IBOutlet UIImageView *checkmark;
+@property (weak, nonatomic) IBOutlet UIButton *cover;
 
 @end
 @implementation SXDealCell
+- (IBAction)coverClick {
+    // 永久修改模型状态
+    self.deal.checked = !self.deal.isChecked;
+    
+    // 让打钩控件马上有反应
+    //    self.deal = self.deal;
+    self.checkmark.hidden = !self.deal.isChecked;
+    
+    // 发出通知
+    [SXNoteCenter postNotificationName:SXCellCoverDidClickNotification object:nil];
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -64,6 +77,11 @@
     // 结果如果是降序，就说明前面的比后面的大，就是出版时间小于现在的时间就是 旧的，标志就隐藏
     self.dealNewMark.hidden = (result == NSOrderedDescending);
     
+    // 根据模型的editing属性来确定是否要进入编辑模式
+    self.cover.hidden = !deal.editing;
+    
+    // 根据模型的checked属性来确定是否要显示打钩（checkmark）
+    self.checkmark.hidden = !self.deal.isChecked;
 }
 
 @end

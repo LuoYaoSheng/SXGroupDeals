@@ -6,14 +6,14 @@
 //  Copyright (c) 2015年 shangxianDante. All rights reserved.
 //
 
-#import "SXCollectionViewController.h"
+#import "SXHistoryViewController.h"
 #import "SXDealCell.h"
 #import "SXDetailViewController.h"
 #import "SXDealTool.h"
 #import "UIView+AutoLayout.h"
 #import "UIBarButtonItem+Extension.h"
 
-@interface SXCollectionViewController ()
+@interface SXHistoryViewController ()
 /** 显示的所有团购 */
 @property (nonatomic, strong) NSMutableArray *deals;
 
@@ -31,7 +31,7 @@
 static NSString *const SXEdit = @"编辑";
 static NSString *const SXDone = @"完成";
 #define SXNavLeftText(text) [NSString stringWithFormat:@"   %@  ", text]
-@implementation SXCollectionViewController
+@implementation SXHistoryViewController
 #pragma mark - 懒加载
 - (UIBarButtonItem *)backItem
 {
@@ -108,14 +108,15 @@ static NSString * const reuseIdentifier = @"deal";
     
     // 重新刷新数据
     [self.deals removeAllObjects];
-    [self.deals addObjectsFromArray:[SXDealTool collectedDeals]];
+    [self.deals addObjectsFromArray:[SXDealTool historyDeals]];
     [self.collectionView reloadData];
     
-    // 清空模型的状态 防止一进去还一层白色萌版
+    // 清空模型的状态
     for (SXDeal *deal in self.deals) {
         deal.editing = NO;
         deal.checked = NO;
     }
+    
     
     // 控制右上角编辑能否交互
     self.navigationItem.rightBarButtonItem.enabled = (self.deals.count > 0);
@@ -123,7 +124,7 @@ static NSString * const reuseIdentifier = @"deal";
     // 根据屏幕尺寸设置边距
     [self viewWillTransitionToSize:[UIScreen mainScreen].bounds.size withTransitionCoordinator:nil];
     
-
+   
 }
 
 #pragma mark - 监听通知
@@ -147,7 +148,7 @@ static NSString * const reuseIdentifier = @"deal";
 {
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_back" HightLightImage:@"icon_back_highlighted" target:self action:@selector(back)];
     
-    self.title = @"我的收藏";
+    self.title = @"浏览历史";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleDone target:self action:@selector(edit)];
 }
@@ -216,7 +217,7 @@ static NSString * const reuseIdentifier = @"deal";
     NSArray *deletedDeals = [self.deals filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"checked == YES"]];
     
     // 取消收藏
-    [SXDealTool uncollectDeals:deletedDeals];
+    [SXDealTool removeHistoryDeals:deletedDeals];
     
     // 刷新数据
     [self.deals removeObjectsInArray:deletedDeals];

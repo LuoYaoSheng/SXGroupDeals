@@ -19,4 +19,11 @@
 
 + (void)uncollect:(SXDeal *)deal;
 
++ (void)uncollectDeals:(NSArray *)deals;
+
+
++ (NSArray *)historyDeals;
++ (void)addHistoryDeal:(SXDeal *)deal;
++ (void)removeHistoryDeal:(SXDeal *)deal;
++ (void)removeHistoryDeals:(NSArray *)deals;
 @end

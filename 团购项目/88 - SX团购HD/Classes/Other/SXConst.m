@@ -21,6 +21,8 @@ NSString *const SXCurrentDistrictKey = @"SXCurrentDistrictKey";
 /** 通过这个key可以取出当前子区域的索引 */
 NSString *const SXCurrentSubdistrictIndexKey = @"SXCurrentSubdistrictIndexKey";
 
+/** cell遮盖点击的通知 */
+NSString *const SXCellCoverDidClickNotification = @"SXCellCoverDidClickNotification";
 
 // 数值
 CGFloat const SXScreenMaxWH = 1024;

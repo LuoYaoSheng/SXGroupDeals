@@ -69,6 +69,9 @@
     [self setLeftView];
     [self setRightView];
     
+    // 添加这个团购到访问记录
+    [SXDealTool addHistoryDeal:self.deal];
+    
 }
 
 

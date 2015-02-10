@@ -92,6 +92,23 @@
                             <constraint firstAttribute="height" constant="24" id="hQc-5O-0cV"/>
                         </constraints>
                     </imageView>
+                    <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8g-3U-8bj">
+                        <rect key="frame" x="0.0" y="0.0" width="305" height="305"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="coverClick" destination="W2Q-kP-Qk2" eventType="touchUpInside" id="2Lq-uf-O4x"/>
+                        </connections>
+                    </button>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_order_refundable" translatesAutoresizingMaskIntoConstraints="NO" id="dyN-ik-sC4">
+                        <rect key="frame" x="271" y="271" width="34" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="Mgi-hv-fgw"/>
+                            <constraint firstAttribute="width" constant="34" id="gnI-cF-7yW"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -99,16 +116,24 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="VDK-KZ-Ua5" secondAttribute="trailing" constant="5" id="0oc-dH-CBU"/>
                 <constraint firstItem="VDK-KZ-Ua5" firstAttribute="leading" secondItem="W2Q-kP-Qk2" secondAttribute="leading" constant="5" id="6Vb-bM-d4D"/>
+                <constraint firstItem="M8g-3U-8bj" firstAttribute="top" secondItem="W2Q-kP-Qk2" secondAttribute="top" id="9E4-Nt-fjd"/>
+                <constraint firstAttribute="bottom" secondItem="M8g-3U-8bj" secondAttribute="bottom" id="LnA-OS-kCJ"/>
+                <constraint firstAttribute="bottom" secondItem="dyN-ik-sC4" secondAttribute="bottom" id="Ogw-qZ-req"/>
+                <constraint firstAttribute="trailing" secondItem="dyN-ik-sC4" secondAttribute="trailing" id="R6A-A9-AKS"/>
                 <constraint firstItem="j1q-al-wX8" firstAttribute="leading" secondItem="W2Q-kP-Qk2" secondAttribute="leading" id="RxQ-0F-DUj"/>
                 <constraint firstAttribute="bottom" secondItem="bIv-Lh-iUQ" secondAttribute="bottom" constant="10" id="ZYR-Od-6vL"/>
+                <constraint firstAttribute="trailing" secondItem="M8g-3U-8bj" secondAttribute="trailing" id="bHy-8a-igU"/>
                 <constraint firstAttribute="trailing" secondItem="bIv-Lh-iUQ" secondAttribute="trailing" constant="10" id="dTb-gh-Mw3"/>
                 <constraint firstItem="bIv-Lh-iUQ" firstAttribute="top" secondItem="VDK-KZ-Ua5" secondAttribute="bottom" constant="10" id="dcn-wF-mee"/>
+                <constraint firstItem="M8g-3U-8bj" firstAttribute="leading" secondItem="W2Q-kP-Qk2" secondAttribute="leading" id="kXK-kk-Ov4"/>
                 <constraint firstItem="VDK-KZ-Ua5" firstAttribute="top" secondItem="W2Q-kP-Qk2" secondAttribute="top" constant="5" id="kaJ-Ue-232"/>
                 <constraint firstItem="j1q-al-wX8" firstAttribute="top" secondItem="W2Q-kP-Qk2" secondAttribute="top" id="tx0-sF-kEY"/>
                 <constraint firstItem="bIv-Lh-iUQ" firstAttribute="leading" secondItem="W2Q-kP-Qk2" secondAttribute="leading" constant="10" id="vYd-uE-p7s"/>
             </constraints>
             <size key="customSize" width="305" height="305"/>
             <connections>
+                <outlet property="checkmark" destination="dyN-ik-sC4" id="QwT-Uv-6ac"/>
+                <outlet property="cover" destination="M8g-3U-8bj" id="RXS-z5-tSU"/>
                 <outlet property="currentPriceLabel" destination="00I-Yg-zpw" id="QaM-n2-2hU"/>
                 <outlet property="dealNewMark" destination="j1q-al-wX8" id="1aI-uK-J8c"/>
                 <outlet property="descLabel" destination="r0S-Le-93e" id="jtG-xZ-f5v"/>
@@ -122,6 +147,7 @@
     </objects>
     <resources>
         <image name="ic_deal_new" width="38" height="24"/>
+        <image name="icon_order_refundable" width="17" height="17"/>
         <image name="placeholder_deal" width="273" height="172"/>
     </resources>
 </document>

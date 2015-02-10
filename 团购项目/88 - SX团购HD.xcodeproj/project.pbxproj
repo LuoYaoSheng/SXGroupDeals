@@ -29,6 +29,7 @@
 		1D35A5AD1A8635A0002AF6AF /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D35A5A31A8635A0002AF6AF /* UIScrollView+MJExtension.m */; };
 		1D35A5AE1A8635A0002AF6AF /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D35A5A51A8635A0002AF6AF /* UIScrollView+MJRefresh.m */; };
 		1D35A5AF1A8635A0002AF6AF /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D35A5A71A8635A0002AF6AF /* UIView+MJExtension.m */; };
+		1D3D1BCE1A8A069D00119E3A /* SXHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3D1BCD1A8A069D00119E3A /* SXHistoryViewController.m */; };
 		1D4687F41A877BB800580000 /* SXDealTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4687F31A877BB800580000 /* SXDealTool.m */; };
 		1D4687FA1A87844C00580000 /* AwesomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4687F71A87844C00580000 /* AwesomeMenu.m */; };
 		1D4687FB1A87844C00580000 /* AwesomeMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4687F91A87844C00580000 /* AwesomeMenuItem.m */; };
@@ -148,6 +149,8 @@
 		1D35A5A51A8635A0002AF6AF /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		1D35A5A61A8635A0002AF6AF /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		1D35A5A71A8635A0002AF6AF /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		1D3D1BCC1A8A069D00119E3A /* SXHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXHistoryViewController.h; sourceTree = "<group>"; };
+		1D3D1BCD1A8A069D00119E3A /* SXHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXHistoryViewController.m; sourceTree = "<group>"; };
 		1D4687F21A877BB800580000 /* SXDealTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXDealTool.h; sourceTree = "<group>"; };
 		1D4687F31A877BB800580000 /* SXDealTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXDealTool.m; sourceTree = "<group>"; };
 		1D4687F61A87844C00580000 /* AwesomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeMenu.h; sourceTree = "<group>"; };
@@ -344,6 +347,15 @@
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
+		1D3D1BCB1A8A067200119E3A /* History */ = {
+			isa = PBXGroup;
+			children = (
+				1D3D1BCC1A8A069D00119E3A /* SXHistoryViewController.h */,
+				1D3D1BCD1A8A069D00119E3A /* SXHistoryViewController.m */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		1D4687F51A87844C00580000 /* AwesomeMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +428,7 @@
 		1D59E2941A8062A8006265BC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1D3D1BCB1A8A067200119E3A /* History */,
 				1D59E2951A8062A8006265BC /* Collect */,
 				1D59E2991A8062A8006265BC /* Home */,
 				1D59E29F1A8062A8006265BC /* Map */,
@@ -828,6 +841,7 @@
 				1D35A5891A863584002AF6AF /* MJFoundation.m in Sources */,
 				1D35A58D1A863584002AF6AF /* NSObject+MJIvar.m in Sources */,
 				1DAA47981A81EBC6009B1581 /* UIBarButtonItem+Extension.m in Sources */,
+				1D3D1BCE1A8A069D00119E3A /* SXHistoryViewController.m in Sources */,
 				1D35A5AE1A8635A0002AF6AF /* UIScrollView+MJRefresh.m in Sources */,
 				1D6BE3731A845CAF00BF1AB7 /* UIImage+GIF.m in Sources */,
 				1D6BE36C1A845CAF00BF1AB7 /* SDWebImageCompat.m in Sources */,

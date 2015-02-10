@@ -24,3 +24,5 @@ UIKIT_EXTERN NSString *const SXCurrentSubdistrictIndexKey;
 UIKIT_EXTERN CGFloat const SXScreenMaxWH;
 UIKIT_EXTERN CGFloat const SXScreenMinWH;
 
+/** cell遮盖点击的通知 */
+UIKIT_EXTERN NSString *const SXCellCoverDidClickNotification;

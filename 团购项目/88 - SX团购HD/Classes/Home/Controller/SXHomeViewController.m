@@ -28,6 +28,7 @@
 #import "SXDetailViewController.h"
 #import "AwesomeMenu.h"
 #import "SXCollectionViewController.h"
+#import "SXHistoryViewController.h"
 #import "SXNavController.h"
 
 @interface SXHomeViewController ()<AwesomeMenuDelegate>
@@ -183,8 +184,12 @@ static NSString * const reuseIdentifier = @"deal";
             [self presentViewController:nav animated:YES completion:nil];
             break;
         }
-        case 2: // 历史
+        case 2: { // 收藏
+            SXHistoryViewController *historyVc = [[SXHistoryViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+            SXNavController *nav = [[SXNavController alloc] initWithRootViewController:historyVc];
+            [self presentViewController:nav animated:YES completion:nil];
             break;
+        }
         case 3: // 更多
             break;
     }
