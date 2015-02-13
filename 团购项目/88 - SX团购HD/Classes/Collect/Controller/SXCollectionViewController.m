@@ -226,7 +226,7 @@ static NSString * const reuseIdentifier = @"deal";
     [self coverClick];
 }
 
-#pragma mark - 监听屏幕旋转
+#pragma mark - ******************** 监听屏幕旋转
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
@@ -248,7 +248,7 @@ static NSString * const reuseIdentifier = @"deal";
     layout.minimumLineSpacing = yMargin;
 }
 
-#pragma mark - <UICollectionViewDataSource>
+#pragma mark - ******************** COLLECTIONVIEW数据源方法
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSUInteger count = self.deals.count;
     self.noDataView.hidden = (count > 0);
@@ -264,7 +264,7 @@ static NSString * const reuseIdentifier = @"deal";
     return cell;
 }
 
-#pragma mark - <UICollectionViewDelegate>
+#pragma mark - ******************** COLLECTIONVIEW代理方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SXDetailViewController *detailVc = [[SXDetailViewController alloc] init];
