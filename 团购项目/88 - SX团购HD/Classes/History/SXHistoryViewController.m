@@ -30,6 +30,7 @@
 
 static NSString *const SXEdit = @"编辑";
 static NSString *const SXDone = @"完成";
+// $$$$$
 #define SXNavLeftText(text) [NSString stringWithFormat:@"   %@  ", text]
 @implementation SXHistoryViewController
 #pragma mark - 懒加载
